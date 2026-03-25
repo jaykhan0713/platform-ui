@@ -15,7 +15,7 @@ const dmSans = DM_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "jay.platform front end for portfolio",
+  title: "jay.platform — Distributed systems for 0→1 startups",
   description:
       "Plug-and-play backend platform. Scaleable, observable, resilient infrastructure exercised under real load.",
 };
@@ -28,9 +28,9 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${syne.variable} ${dmSans.variable} h-full antialiased`}
+      className={`${syne.variable} ${dmSans.variable}`}
     >
-      <body className="bg-[#0A0A0F] text-[#E8E6E0] min-h-screen">{children}</body>
+      <body className="min-h-screen antialiased">{children}</body>
     </html>
   );
 }
