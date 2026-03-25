@@ -34,3 +34,40 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+## Layering initial
+
+```
+src/
+  app/                    → routing only, Next.js owns this
+    layout.tsx
+    page.tsx
+    dashboard/
+        page.tsx
+    callback/
+        page.tsx
+
+  components/
+    Nav.tsx               → shared across both
+    Footer.tsx            → shared across both
+    landing/              → landing page specific
+        StatCard.tsx
+        FeatureCard.tsx
+    gacha/                → gacha specific
+        PullButton.tsx
+        InventoryGrid.tsx
+
+  hooks/                  → reusable logic with React state, orchestrates lib/ calls
+    useAuth.ts
+    useGacha.ts
+
+  lib/ 
+    api.ts
+    auth.ts
+
+  types/                  → TypeScript interfaces
+    index.ts
+
+  config/                 → env vars, constants
+    env.ts
+```

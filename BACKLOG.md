@@ -1,0 +1,1 @@
+- replace API call boiler plate with React/TanStack Query
