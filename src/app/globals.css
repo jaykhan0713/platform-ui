@@ -12,8 +12,36 @@
 /*  --font-display: var(--font-syne);*/
 /*}*/
 
+@theme inline {
+  --font-sans: var(--font-dm-sans);
+  --font-display: var(--font-syne);
+}
+
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-dm-sans);
+}
+
+.grid-bg {
+    position: fixed;
+    inset: 0;
+    background-image:
+            linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.accent-blob {
+    position: fixed;
+    width: 600px;
+    height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(83,74,183,0.15) 0%, transparent 70%);
+    top: -200px;
+    right: -100px;
+    pointer-events: none;
+    z-index: 0;
 }

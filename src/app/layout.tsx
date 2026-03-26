@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Syne, DM_Sans } from "next/font/google";
+import React from "react";
 import "./globals.css";
+
 
 const syne = Syne({
   variable: "--font-syne",
@@ -26,11 +28,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="en"
-      className={`${syne.variable} ${dmSans.variable}`}
-    >
-      <body className="min-h-screen antialiased">{children}</body>
-    </html>
+      <html lang="en"
+          className={`${syne.variable} ${dmSans.variable}`}>
+        <body className="min-h-screen antialiased">
+          <div className="grid-bg" />
+          <div className="accent-blob" />
+          {children}
+        </body>
+      </html>
   );
 }
