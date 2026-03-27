@@ -9,9 +9,19 @@ export interface StatCardProps {
   label: string
   prefix?: string
   suffix?: string
+  minWidth?: string
+  hideDivider?: boolean
 }
 
-export function StatCard({ end, start, label, prefix, suffix }: StatCardProps) {
+export function StatCard({
+  end,
+  start,
+  label,
+  prefix = "",
+  suffix = "",
+  minWidth = "170px",
+  hideDivider,
+}: StatCardProps) {
   const [count, setCount] = useState(start)
 
   useEffect(() => {
@@ -19,7 +29,8 @@ export function StatCard({ end, start, label, prefix, suffix }: StatCardProps) {
     const ticks = duration / 16 // ~94 ticks at 60fps
     const direction = start <= end ? 1 : -1
     const step = (direction == 1 ? end - start : start - end) / ticks
-    //push
+
+    //syncs count to duration across all cards
     const interval = setInterval(() => {
       setCount((prev) => {
         if (direction == 1 && prev >= end) {
@@ -40,9 +51,12 @@ export function StatCard({ end, start, label, prefix, suffix }: StatCardProps) {
   }, [])
 
   return (
-    <div className="flex flex-col gap-1">
+    <div
+      className={`flex flex-col gap-1 relative min-w-[${minWidth}] ${hideDivider ? "" : "stat-divider"}`}
+      style={{ minWidth }}
+    >
       <span className="font-display text-[28px] font-bold text-[#E8E6E0] tracking-tight">
-        {`${prefix ?? ""}${count == end ? count : Math.round(count)}${suffix ?? ""}`}
+        {`${prefix}${count == end ? count : Math.round(count)}${suffix}`}
       </span>
       <span className="text-xs uppercase tracking-[0.5px] text-[#E8E6E0]/40 leading-none">
         {label}
