@@ -19,7 +19,7 @@ export function StatCard({ end, start, label, prefix, suffix }: StatCardProps) {
     const ticks = duration / 16 // ~94 ticks at 60fps
     const direction = start <= end ? 1 : -1
     const step = (direction == 1 ? end - start : start - end) / ticks
-
+    //push
     const interval = setInterval(() => {
       setCount((prev) => {
         if (direction == 1 && prev >= end) {
