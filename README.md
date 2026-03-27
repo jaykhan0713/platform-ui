@@ -61,7 +61,7 @@ src/
     useAuth.ts
     useGacha.ts
 
-  lib/ 
+  lib/
     api.ts
     auth.ts
 
