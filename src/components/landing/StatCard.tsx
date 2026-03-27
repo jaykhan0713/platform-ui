@@ -41,7 +41,7 @@ export function StatCard({ end, start, label, prefix, suffix }: StatCardProps) {
 
   return (
     <div className="flex flex-col gap-1">
-      <span className="font-display text-[28px] font-bold text-[#E8E6E0] tracking-tight tabular-nums">
+      <span className="font-display text-[28px] font-bold text-[#E8E6E0] tracking-tight">
         {`${prefix ?? ""}${count == end ? count : Math.round(count)}${suffix ?? ""}`}
       </span>
       <span className="text-xs uppercase tracking-[0.5px] text-[#E8E6E0]/40 leading-none">
