@@ -16,7 +16,7 @@ const dmSans = DM_Sans({
 })
 
 export const metadata: Metadata = {
-  title: "jay.platform — Distributed systems for 0→1 startups",
+  title: "jay.platform — Distributed systems for 0→1 startups Concept",
   description:
     "Plug-and-play backend platform. Scaleable, observable, resilient infrastructure exercised under real load.",
 }
