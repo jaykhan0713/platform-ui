@@ -43,7 +43,7 @@ export default function Home() {
       </h1>
       <p className="text-[18px] font-light leading-[1.7] text-[#E8E6E0]/55 max-w-[560px] mb-12">
         <strong>Concept:</strong> A plug-and-play backend platform built for 0→1 startups. Scalable,
-        secure, observable, resilient infrastructure — exercised under real load, not just
+        secure, observable, resilient infrastructure. Exercised under real load, not just
         diagrammed.
       </p>
       <div className="flex items-center gap-12 flex-wrap mb-24">
