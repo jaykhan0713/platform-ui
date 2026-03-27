@@ -39,7 +39,7 @@ export default function Home() {
         <br />
         that <em className="not-italic text-[#7F77DD]">just work</em>
         <br />
-        at any scale.
+        at scale.
       </h1>
       <p className="text-[18px] font-light leading-[1.7] text-[#E8E6E0]/55 max-w-[560px] mb-12">
         <strong>Concept:</strong> A plug-and-play backend platform built for 0→1 startups. Scalable,
@@ -51,6 +51,9 @@ export default function Home() {
           <StatCard key={stat.name} {...stat} />
         ))}
       </div>
+      <p className="text-[11px] font-medium tracking-[1.5px] uppercase text-[#E8E6E0]/30 mb-6">
+        What&#39;s included
+      </p>
       <div className="grid grid-cols-3 gap-px bg-white/6 rounded-xl overflow-hidden mb-24">
         <FeatureCard
           icon="🏗"
