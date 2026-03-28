@@ -11,10 +11,9 @@ const stats: StatCardProps[] = [
     name: "P99",
     start: 200,
     end: 40,
-    prefix: "p99 < ",
     suffix: " ms",
     minWidth: "202px",
-    label: "final response times",
+    label: "P99 final response",
   },
   {
     name: "TimeToDeploy",
@@ -45,13 +44,13 @@ export default function Home() {
         at scale.
       </h1>
       <p
-        className="leading-[1.7] text-[#E8E6E0]/55 max-w-[560px] mb-12"
-        style={{ fontSize: "clamp(14px, 4vw, 18px)" }}
+        className="leading-[1.5] md:leading-[1.7] text-[#E8E6E0]/55 max-w-[560px] mb-12"
+        style={{ fontSize: "clamp(11px, 3.8vw, 18px)" }}
       >
         A plug-and-play backend platform built for 0→1 startups. Scalable, secure, observable,
         resilient infrastructure. Exercised under real load.
       </p>
-      <div className="flex items-center flex-wrap md:gap-12 mb-12">
+      <div className="flex items-center flex-wrap gap-x-8 gap-y-6 md:gap-12 mb-12">
         {stats.map((stat, index) => (
           <StatCard key={stat.name} {...stat} />
         ))}

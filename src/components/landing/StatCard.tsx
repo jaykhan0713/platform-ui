@@ -53,10 +53,13 @@ export function StatCard({
   return (
     <div
       className={`flex flex-col gap-1 relative min-w-[${minWidth}] ${hideDivider ? "" : "stat-divider"}`}
-      style={{ minWidth }}
     >
       <span className="font-display font-bold text-[22px] md:text-[28px] text-[#E8E6E0] tracking-tight">
-        {`${prefix}${count == end ? count : Math.round(count)}${suffix}`}
+        <span className="tabular-nums">
+          {prefix}
+          {count == end ? count : Math.round(count)}
+          {suffix}
+        </span>
       </span>
       <span className="text-[8px] md:text-xs uppercase tracking-[0.5px] text-[#E8E6E0]/40 leading-none">
         {label}
