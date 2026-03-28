@@ -1,41 +1,56 @@
+"use client"
+
+import { useState } from "react"
+
 export function Nav() {
+  const [isOpen, setIsOpen] = useState(false)
+
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 px-4 md:px-12 py-5 flex items-center justify-between border-b border-white/[0.06] bg-[#0A0A0F]/80 backdrop-blur-[12px]">
-      <div className="font-display font-extrabold text-[18px] tracking-[-0.5px] text-[#E8E6E0]">
-        jay<span className="text-[#7F77DD]">.</span>platform
+    <nav className="fixed top-0 left-0 right-0 z-50 px-4 md:px-12 py-5 border-b border-white/[0.06] bg-[#0A0A0F]/80 backdrop-blur-[12px]">
+      <div className="flex items-center justify-between">
+        <div className="font-display font-extrabold text-[18px] tracking-[-0.5px] text-[#E8E6E0]">
+          jay<span className="text-[#7F77DD]">.</span>platform
+        </div>
+
+        <div className="hidden md:flex items-center gap-3">
+          <a
+            href="/demo"
+            className="text-[13px] font-medium text-[#0A0A0F] bg-[#E8E6E0] px-5 py-2 rounded-md hover:bg-white transition-colors"
+          >
+            Try the demo →
+          </a>
+          <a
+            href="/login"
+            className="text-[13px] font-medium text-[#E8E6E0]/60 hover:text-[#E8E6E0] transition-colors px-3 py-2"
+          >
+            Log in
+          </a>
+        </div>
+
+        <button
+          className="md:hidden text-[#E8E6E0]/60 hover:text-[#E8E6E0] transition-colors p-2"
+          onClick={() => setIsOpen(!isOpen)}
+        >
+          {isOpen ? "✕" : "☰"}
+        </button>
       </div>
-      {/*<ul className="flex items-center gap-8 list-none">*/}
-      {/*  <li>*/}
-      {/*    <a*/}
-      {/*      href="#"*/}
-      {/*      className="text-[13px] text-[#E8E6E0]/50 hover:text-[#E8E6E0] transition-colors no-underline tracking-[0.3px]"*/}
-      {/*    >*/}
-      {/*      Architecture*/}
-      {/*    </a>*/}
-      {/*  </li>*/}
-      {/*  <li>*/}
-      {/*    <a*/}
-      {/*      href="#"*/}
-      {/*      className="text-[13px] text-[#E8E6E0]/50 hover:text-[#E8E6E0] transition-colors no-underline tracking-[0.3px]"*/}
-      {/*    >*/}
-      {/*      Observability*/}
-      {/*    </a>*/}
-      {/*  </li>*/}
-      {/*  <li>*/}
-      {/*    <a*/}
-      {/*      href="#"*/}
-      {/*      className="text-[13px] text-[#E8E6E0]/50 hover:text-[#E8E6E0] transition-colors no-underline tracking-[0.3px]"*/}
-      {/*    >*/}
-      {/*      Load Tests*/}
-      {/*    </a>*/}
-      {/*  </li>*/}
-      {/*</ul>*/}
-      {/*<a*/}
-      {/*  href="#"*/}
-      {/*  className="text-[13px] font-medium text-[#E8E6E0] border border-white/20 px-5 py-2 rounded-md hover:border-[#7F77DD] hover:bg-[#7F77DD]/10 transition-all no-underline"*/}
-      {/*>*/}
-      {/*  Try the demo →*/}
-      {/*</a>*/}
+
+      {isOpen && (
+        <div className="md:hidden flex flex-col gap-3 pt-4 pb-2 border-t border-white/[0.06] mt-4">
+          <a
+            href="/demo"
+            className="text-[14px] font-medium text-[#0A0A0F] bg-[#E8E6E0] px-5 py-3 rounded-md text-center hover:bg-white transition-colors"
+          >
+            Try the demo →
+          </a>
+          <a
+            href="/login"
+            className="text-[14px] text-[#E8E6E0]/60 hover:text-[#E8E6E0] transition-colors text-center py-2"
+          >
+            Log in
+          </a>
+        </div>
+      )}
     </nav>
   )
 }
