@@ -28,7 +28,7 @@ const stats: StatCardProps[] = [
 
 export default function Home() {
   return (
-    <main className="pt-[140px] pb-[100px] max-w-[1100px] mx-auto px-4 md:px-12">
+    <main className="pt-[100px] md:pt-[140px] pb-[100px] max-w-[1100px] mx-auto px-4 md:px-12">
       <Nav />
       <div className="inline-flex items-center gap-2 bg-[#7F77DD]/[0.12] border-[0.5px] border-[#7F77DD]/30 rounded-full px-[14px] py-[6px] text-[12px] font-medium text-[#AFA9EC] tracking-[0.5px] uppercase mb-8">
         <div className="w-2 h-2 rounded-full bg-[#7F77DD] animate-pulse" />
@@ -44,12 +44,14 @@ export default function Home() {
         <br />
         at scale.
       </h1>
-      <p className="text-[18px] font-light leading-[1.7] text-[#E8E6E0]/55 max-w-[560px] mb-12">
-        <strong>Concept:</strong> A plug-and-play backend platform built for 0→1 startups. Scalable,
-        secure, observable, resilient infrastructure. Exercised under real load, not just
-        diagrammed.
+      <p
+        className="leading-[1.7] text-[#E8E6E0]/55 max-w-[560px] mb-12"
+        style={{ fontSize: "clamp(14px, 4vw, 18px)" }}
+      >
+        A plug-and-play backend platform built for 0→1 startups. Scalable, secure, observable,
+        resilient infrastructure. Exercised under real load.
       </p>
-      <div className="flex items-center gap-12 flex-wrap mb-24">
+      <div className="flex items-center flex-wrap md:gap-12 mb-12">
         {stats.map((stat, index) => (
           <StatCard key={stat.name} {...stat} />
         ))}

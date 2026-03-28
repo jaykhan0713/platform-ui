@@ -55,10 +55,10 @@ export function StatCard({
       className={`flex flex-col gap-1 relative min-w-[${minWidth}] ${hideDivider ? "" : "stat-divider"}`}
       style={{ minWidth }}
     >
-      <span className="font-display text-[28px] font-bold text-[#E8E6E0] tracking-tight">
+      <span className="font-display font-bold text-[22px] md:text-[28px] text-[#E8E6E0] tracking-tight">
         {`${prefix}${count == end ? count : Math.round(count)}${suffix}`}
       </span>
-      <span className="text-xs uppercase tracking-[0.5px] text-[#E8E6E0]/40 leading-none">
+      <span className="text-[8px] md:text-xs uppercase tracking-[0.5px] text-[#E8E6E0]/40 leading-none">
         {label}
       </span>
     </div>
