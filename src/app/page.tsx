@@ -34,7 +34,10 @@ export default function Home() {
         <div className="w-2 h-2 rounded-full bg-[#7F77DD] animate-pulse" />
         Production-grade · Day 1 ready
       </div>
-      <h1 className="font-display font-extrabold text-[clamp(42px,6vw,72px)] leading-[1.05] tracking-[-2px] text-[#E8E6E0] mb-7 max-w-[800px]">
+      <h1
+        className="font-display font-extrabold leading-[1.05] tracking-[-2px] text-[#E8E6E0] mb-7 max-w-[800px]"
+        style={{ fontSize: "clamp(32px, 8vw, 72px)" }}
+      >
         Distributed systems
         <br />
         that <em className="not-italic text-[#7F77DD]">just work</em>
