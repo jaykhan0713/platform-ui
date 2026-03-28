@@ -44,7 +44,7 @@ export default function Home() {
         at scale.
       </h1>
       <p
-        className="leading-[1.5] md:leading-[1.7] text-[#E8E6E0]/55 max-w-[560px] mb-12"
+        className="leading-[1.5] md:leading-[1.7] text-[#E8E6E0]/55 max-w-[560px] mb-8 md:mb-12"
         style={{ fontSize: "clamp(11px, 3.8vw, 18px)" }}
       >
         A plug-and-play backend platform built for 0→1 startups. Scalable, secure, observable,

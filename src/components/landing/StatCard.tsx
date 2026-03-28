@@ -61,7 +61,7 @@ export function StatCard({
           {suffix}
         </span>
       </span>
-      <span className="text-[8px] md:text-xs uppercase tracking-[0.5px] text-[#E8E6E0]/40 leading-none">
+      <span className="text-[10px] md:text-xs uppercase tracking-[0.5px] text-[#E8E6E0]/40 leading-none">
         {label}
       </span>
     </div>
