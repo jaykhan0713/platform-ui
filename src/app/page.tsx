@@ -115,6 +115,22 @@ export default function Home() {
           link="https://github.com/jaykhan0713/platform-ui"
         />
       </div>
+      <footer className="border-t border-white/[0.06] py-8 px-12 max-w-[1100px] mx-auto flex items-center justify-between">
+        <span className="text-[13px] text-[#E8E6E0]/30">
+          Built by <span className="text-[#7F77DD]/80">Jay Khan</span>
+        </span>
+        <span className="text-[12px] text-[#E8E6E0]/20">
+          Powered by{" "}
+          <a
+            href="https://nextjs.org"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-[#E8E6E0]/40 hover:text-[#E8E6E0]/60 transition-colors"
+          >
+            Next.js
+          </a>
+        </span>
+      </footer>
     </main>
   )
 }
