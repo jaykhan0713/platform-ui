@@ -17,7 +17,7 @@ export function SourceCard({ icon, title, description, link }: SourceCardProps) 
         <div className="w-[38px] h-[38px] rounded-lg bg-white/[0.05] flex items-center justify-center text-base">
           {icon}
         </div>
-        <div>
+        <div className="min-w-0">
           <div className="font-display font-bold text-[14px] text-[#E8E6E0] mb-[3px]">{title}</div>
           <div className="text-[12px] text-[#E8E6E0]/40">{description}</div>
         </div>

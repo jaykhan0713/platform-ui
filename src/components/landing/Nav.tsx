@@ -1,6 +1,6 @@
 export function Nav() {
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 px-12 py-5 flex items-center justify-between border-b border-white/[0.06] bg-[#0A0A0F]/80 backdrop-blur-[12px]">
+    <nav className="fixed top-0 left-0 right-0 z-50 px-4 md:px-12 py-5 flex items-center justify-between border-b border-white/[0.06] bg-[#0A0A0F]/80 backdrop-blur-[12px]">
       <div className="font-display font-extrabold text-[18px] tracking-[-0.5px] text-[#E8E6E0]">
         jay<span className="text-[#7F77DD]">.</span>platform
       </div>

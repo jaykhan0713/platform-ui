@@ -28,7 +28,7 @@ const stats: StatCardProps[] = [
 
 export default function Home() {
   return (
-    <main className="pt-[140px] pb-[100px] max-w-[1100px] mx-auto px-12">
+    <main className="pt-[140px] pb-[100px] max-w-[1100px] mx-auto px-4 md:px-12">
       <Nav />
       <div className="inline-flex items-center gap-2 bg-[#7F77DD]/[0.12] border-[0.5px] border-[#7F77DD]/30 rounded-full px-[14px] py-[6px] text-[12px] font-medium text-[#AFA9EC] tracking-[0.5px] uppercase mb-8">
         <div className="w-2 h-2 rounded-full bg-[#7F77DD] animate-pulse" />
@@ -54,7 +54,7 @@ export default function Home() {
       <p className="text-[11px] font-medium tracking-[1.5px] uppercase text-[#E8E6E0]/30 mb-6">
         What&#39;s included
       </p>
-      <div className="grid grid-cols-3 gap-px bg-white/6 rounded-xl overflow-hidden mb-24">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-white/6 rounded-xl overflow-hidden mb-24">
         <FeatureCard
           icon="🏗"
           title="AWS CDK Typescript"
@@ -89,7 +89,7 @@ export default function Home() {
       <p className="text-[11px] font-medium tracking-[1.5px] uppercase text-[#E8E6E0]/30 mb-6">
         Explore the source
       </p>
-      <div className="grid grid-cols-2 gap-4 mb-20">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-20">
         <SourceCard
           title="AWS CDK IaC Platform"
           icon="🏛"
@@ -115,7 +115,7 @@ export default function Home() {
           link="https://github.com/jaykhan0713/platform-ui"
         />
       </div>
-      <footer className="border-t border-white/[0.06] py-8 px-12 max-w-[1100px] mx-auto flex items-center justify-between">
+      <footer className="border-t border-white/[0.06] py-8 px-4 md:px-12 max-w-[1100px] mx-auto flex flex-col md:flex-row gap-4 items-center justify-between">
         <span className="text-[13px] text-[#E8E6E0]/30">
           Built by <span className="text-[#7F77DD]/80">Jay Khan</span>
         </span>
