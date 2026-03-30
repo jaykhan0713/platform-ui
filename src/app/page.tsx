@@ -70,24 +70,39 @@ export default function Home() {
           description="Java 25, Project loom virtual threads. Hexagonal Port Layering, DDD. Backpressure handling."
         />
         <FeatureCard
+          icon="🔐"
+          title="Security"
+          description="Route53 custom domain at Gateway. TLS termination at both GW and ALB. Services on VPC private subnets with VPCE. Scoped Security groups. Least-privilege IAM."
+        />
+        <FeatureCard
           icon="🛡️"
           title="Resiliency"
           description="Resilience4j Circuitbreakers, Bulkheads, Timeouts, Backpressure."
         />
         <FeatureCard
           icon="🔭"
-          title="Full observability stack"
+          title="Observability"
           description="OpenTelemtry, X-Ray, Cloudwatch, Prometheus, Grafana. Every request traced end to end. Standardized logs and graphs."
         />
         <FeatureCard
-          icon="🔐"
-          title="Auth out of the box"
-          description="Cognito User Pool with OAuth2 flow. API Gateway routes wired with authorizers, rate limiting per route"
+          icon="🪪"
+          title="Auth"
+          description="Cognito User Pool with OAuth2 flow. API Gateway routes wired with authorizers, rate limiting per route."
+        />
+        <FeatureCard
+          icon="🚀"
+          title="CICD"
+          description="Automatic no-hassle setup. CodePipelines generated for services, DTO publishing. S3, ECR, CodeArtiact, CDK deploy wired. Github actions with Jacoco + SonarCloud gates. "
+        />
+        <FeatureCard
+          icon="✦"
+          title="Full-stack"
+          description="NextJS deployed on vercel. Login using cognito SRP + OAuth2. Demonstrates Plug-and-play business usecase."
         />
         <FeatureCard
           icon="📊"
-          title="Real load test data end-to-end"
-          description="K6 synthetic traffic load testing end-to-end. 200+ RPS | P99 < 40ms 65% | 0.5 vCPU, 3 containers per single task."
+          title="Load tests end-to-end"
+          description="K6 synthetic traffic load testing starting at Gateway w/ Auth. 200+ RPS. P99 < 30ms sustained traffic at edge. 65% of 0.5 vCPU utilization. 3 containers, 1 task per service."
         />
       </div>
       <p className="text-[11px] font-medium tracking-[1.5px] uppercase text-[#E8E6E0]/30 mb-6">
@@ -109,7 +124,7 @@ export default function Home() {
         <SourceCard
           title="LinkedIn"
           icon="👤"
-          description="Jay Khan · Former Software Engineer III at Expedia Group, Flights team · 6+ years · Backend Distributed Systems · Cloud Infra · Full-Stack"
+          description="Jay Khan · Former Software Engineer III at Expedia Group, Flights team · 7+ years · Backend Distributed Systems · Cloud Infra · Full-Stack"
           link="https://www.linkedin.com/in/jay-khan-458b3a132/"
         />
         <SourceCard
