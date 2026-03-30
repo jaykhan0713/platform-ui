@@ -1,0 +1,60 @@
+<style>
+  .lp-wrap { background: #0A0A0F; min-height: 600px; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 48px 24px; position: relative; overflow: hidden; }
+  .lp-grid { position: absolute; inset: 0; background-image: linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px); background-size: 60px 60px; pointer-events: none; }
+  .lp-blob { position: absolute; width: 400px; height: 400px; border-radius: 50%; background: radial-gradient(circle, rgba(83,74,183,0.18) 0%, transparent 70%); top: -120px; right: -80px; pointer-events: none; }
+  .lp-card { background: #0E0E16; border: 0.5px solid rgba(255,255,255,0.08); border-radius: 16px; padding: 40px 40px; width: 100%; max-width: 420px; position: relative; z-index: 1; }
+  .lp-logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 18px; color: #E8E6E0; text-align: center; margin-bottom: 32px; letter-spacing: -0.5px; }
+  .lp-logo span { color: #7F77DD; }
+  .lp-tabs { display: flex; gap: 0; margin-bottom: 32px; border: 0.5px solid rgba(255,255,255,0.08); border-radius: 8px; overflow: hidden; }
+  .lp-tab { flex: 1; padding: 10px; font-size: 13px; font-weight: 500; text-align: center; cursor: pointer; transition: all 0.2s; border: none; }
+  .lp-tab.active { background: rgba(127,119,221,0.15); color: #AFA9EC; }
+  .lp-tab.inactive { background: transparent; color: rgba(232,230,224,0.35); }
+  .lp-label { font-size: 12px; font-weight: 500; color: rgba(232,230,224,0.45); letter-spacing: 0.5px; text-transform: uppercase; margin-bottom: 8px; display: block; }
+  .lp-input { width: 100%; background: rgba(255,255,255,0.04); border: 0.5px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 12px 14px; font-size: 14px; color: #E8E6E0; font-family: 'DM Sans', sans-serif; box-sizing: border-box; margin-bottom: 20px; outline: none; transition: border-color 0.2s; }
+  .lp-input:focus { border-color: rgba(127,119,221,0.5); }
+  .lp-input::placeholder { color: rgba(232,230,224,0.2); }
+  .lp-btn { width: 100%; padding: 13px; background: #E8E6E0; color: #0A0A0F; border: none; border-radius: 8px; font-size: 14px; font-weight: 500; font-family: 'DM Sans', sans-serif; cursor: pointer; margin-top: 4px; transition: background 0.2s; }
+  .lp-btn:hover { background: #fff; }
+  .lp-divider { display: flex; align-items: center; gap: 12px; margin: 24px 0; }
+  .lp-divider-line { flex: 1; height: 0.5px; background: rgba(255,255,255,0.08); }
+  .lp-divider-text { font-size: 12px; color: rgba(232,230,224,0.25); }
+  .lp-forgot { font-size: 12px; color: rgba(127,119,221,0.7); text-align: right; display: block; margin-top: -12px; margin-bottom: 20px; cursor: pointer; }
+  .lp-back { font-size: 12px; color: rgba(232,230,224,0.3); text-align: center; margin-top: 24px; cursor: pointer; position: relative; z-index: 1; }
+  .lp-back span { color: rgba(127,119,221,0.7); }
+</style>
+
+<div class="lp-wrap">
+  <div class="lp-grid"></div>
+  <div class="lp-blob"></div>
+
+  <div class="lp-card">
+    <div class="lp-logo">jay<span>.</span>platform</div>
+
+    <div class="lp-tabs">
+      <div class="lp-tab active">Sign in</div>
+      <div class="lp-tab inactive">Register</div>
+    </div>
+
+    <label class="lp-label">Email</label>
+    <input class="lp-input" type="email" placeholder="you@example.com" />
+
+    <label class="lp-label">Password</label>
+    <input class="lp-input" type="password" placeholder="••••••••" />
+
+    <span class="lp-forgot">Forgot password?</span>
+
+    <button class="lp-btn">Sign in →</button>
+
+    <div class="lp-divider">
+      <div class="lp-divider-line"></div>
+      <span class="lp-divider-text">or continue with</span>
+      <div class="lp-divider-line"></div>
+    </div>
+
+    <button style="width:100%;padding:12px;background:transparent;border:0.5px solid rgba(255,255,255,0.1);border-radius:8px;font-size:13px;font-weight:400;color:rgba(232,230,224,0.6);font-family:'DM Sans',sans-serif;cursor:pointer;">
+      Continue with Google
+    </button>
+  </div>
+
+  <div class="lp-back">← Back to <span>jay.platform</span></div>
+</div>
