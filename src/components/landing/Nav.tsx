@@ -24,25 +24,28 @@ export function Nav() {
             Try the demo →
           </Link>
 
-          {!authLoading &&
-            (userEmail ? (
-              <div className="flex items-center gap-3">
-                <span className="text-[13px] text-[#E8E6E0]/45">{userEmail}</span>
-                <button
-                  onClick={handleSignOut}
-                  className="text-[13px] font-medium text-[#E8E6E0]/60 hover:text-[#E8E6E0] transition-colors px-3 py-2 bg-transparent border-none cursor-pointer"
-                >
-                  Sign out
-                </button>
-              </div>
-            ) : (
-              <Link
-                href="/login"
-                className="text-[13px] font-medium text-[#E8E6E0]/60 hover:text-[#E8E6E0] transition-colors px-3 py-2"
+          {authLoading ? (
+            <div className="w-[60px] flex items-center justify-center py-2">
+              <div className="w-4 h-4 rounded-full border-2 border-[#E8E6E0]/20 border-t-[#7F77DD] animate-spin" />
+            </div>
+          ) : userEmail ? (
+            <div className="flex items-center gap-3">
+              <span className="text-[13px] text-[#E8E6E0]/45">{userEmail}</span>
+              <button
+                onClick={handleSignOut}
+                className="text-[13px] font-medium text-[#E8E6E0]/60 hover:text-[#E8E6E0] transition-colors px-3 py-2 bg-transparent border-none cursor-pointer"
               >
-                Log in
-              </Link>
-            ))}
+                Sign out
+              </button>
+            </div>
+          ) : (
+            <Link
+              href="/login"
+              className="text-[13px] font-medium text-[#E8E6E0]/60 hover:text-[#E8E6E0] transition-colors px-3 py-2"
+            >
+              Log in
+            </Link>
+          )}
         </div>
 
         <button
