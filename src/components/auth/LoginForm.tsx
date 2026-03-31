@@ -1,67 +1,123 @@
-"use client"
+'use client'
 
-import { useState } from "react"
-import Link from "next/link"
+import { useState } from 'react'
+import Link from 'next/link'
+import { SignInView } from '@/components/auth/views/SignInView'
+import { RegisterView } from '@/components/auth/views/RegisterView'
+import { ConfirmView } from '@/components/auth/views/ConfirmView'
+import { ForgotView } from '@/components/auth/views/ForgotView'
+import { ResetView } from '@/components/auth/views/ResetView'
 
-type Tab = "signin" | "register"
+type View = 'signin' | 'register' | 'confirm' | 'forgot' | 'reset'
+
+const viewTitle: Partial<Record<View, string>> = {
+  confirm: 'Check your email',
+  forgot: 'Reset password',
+  reset: 'New password',
+}
 
 export function LoginForm() {
-  const [tab, setTab] = useState<Tab>("signin")
+  const [view, setView] = useState<View>('signin')
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [confirmPassword, setConfirmPassword] = useState('')
+  const [code, setCode] = useState('')
+  const [newPassword, setNewPassword] = useState('')
+  const [error, setError] = useState('')
+  const [loading, setLoading] = useState(false)
 
-  const inputClass =
-    "w-full bg-white/[0.04] border-[0.5px] border-white/10 rounded-lg px-[14px] py-3 text-[14px] text-[#E8E6E0] font-sans placeholder:text-[#E8E6E0]/20 outline-none focus:border-[#7F77DD]/50 transition-colors box-border"
-  const labelClass =
-    "block text-[12px] font-medium text-[#E8E6E0]/45 tracking-[0.5px] uppercase mb-2"
+  const showTabs = view === 'signin' || view === 'register'
+
+  // handlers — wired to Amplify
+  const handleSignIn = () => {}
+  const handleRegister = () => {}
+  const handleConfirm = () => {}
+  const handleForgot = () => {}
+  const handleReset = () => {}
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center px-6 py-12">
       <div className="w-full max-w-[420px] bg-[#0E0E16] border-[0.5px] border-white/[0.08] rounded-2xl p-10">
+
         <div className="font-display font-extrabold text-[18px] text-[#E8E6E0] text-center mb-8 tracking-[-0.5px]">
           jay<span className="text-[#7F77DD]">.</span>platform
         </div>
 
-        <div className="flex border-[0.5px] border-white/[0.08] rounded-lg overflow-hidden mb-8">
-          {(["signin", "register"] as Tab[]).map((t) => (
+        {showTabs ? (
+          <div className="flex border-[0.5px] border-white/[0.08] rounded-lg overflow-hidden mb-8">
+            {(['signin', 'register'] as View[]).map(v => (
+              <button
+                key={v}
+                onClick={() => { setView(v); setError('') }}
+                className={`flex-1 py-[10px] text-[13px] font-medium transition-all border-none cursor-pointer ${
+                  view === v ? 'bg-[#7F77DD]/15 text-[#AFA9EC]' : 'bg-transparent text-[#E8E6E0]/35'
+                }`}
+              >
+                {v === 'signin' ? 'Sign in' : 'Register'}
+              </button>
+            ))}
+          </div>
+        ) : (
+          <div className="mb-8">
             <button
-              key={t}
-              onClick={() => setTab(t)}
-              className={`flex-1 py-[10px] text-[13px] font-medium transition-all border-none cursor-pointer ${
-                tab === t ? "bg-[#7F77DD]/15 text-[#AFA9EC]" : "bg-transparent text-[#E8E6E0]/35"
-              }`}
+              onClick={() => { setView('signin'); setError('') }}
+              className="text-[12px] text-[#E8E6E0]/30 hover:text-[#E8E6E0]/50 transition-colors bg-transparent border-none cursor-pointer p-0 mb-4 block"
             >
-              {t === "signin" ? "Sign in" : "Register"}
+              ← Back
             </button>
-          ))}
-        </div>
-
-        <label className={labelClass}>Email</label>
-        <input type="email" placeholder="you@example.com" className={`${inputClass} mb-5`} />
-
-        <label className={labelClass}>Password</label>
-        <input
-          type="password"
-          placeholder="••••••••"
-          className={`${inputClass} ${tab === "signin" ? "mb-2" : "mb-5"}`}
-        />
-
-        {tab === "register" && (
-          <>
-            <label className={labelClass}>Confirm password</label>
-            <input type="password" placeholder="••••••••" className={`${inputClass} mb-5`} />
-          </>
-        )}
-
-        {tab === "signin" && (
-          <div className="text-right mb-5">
-            <span className="text-[12px] text-[#7F77DD]/70 cursor-pointer hover:text-[#7F77DD] transition-colors">
-              Forgot password?
-            </span>
+            <p className="font-display font-bold text-[18px] text-[#E8E6E0] tracking-[-0.3px]">
+              {viewTitle[view]}
+            </p>
           </div>
         )}
 
-        <button className="w-full py-[13px] bg-[#E8E6E0] text-[#0A0A0F] rounded-lg text-[14px] font-medium cursor-pointer hover:bg-white transition-colors mt-1">
-          {tab === "signin" ? "Sign in →" : "Create account →"}
-        </button>
+        {view === 'signin' && (
+          <SignInView
+            email={email} setEmail={setEmail}
+            password={password} setPassword={setPassword}
+            loading={loading} error={error}
+            onSubmit={handleSignIn}
+            onForgot={() => { setView('forgot'); setError('') }}
+          />
+        )}
+
+        {view === 'register' && (
+          <RegisterView
+            email={email} setEmail={setEmail}
+            password={password} setPassword={setPassword}
+            confirmPassword={confirmPassword} setConfirmPassword={setConfirmPassword}
+            loading={loading} error={error}
+            onSubmit={handleRegister}
+          />
+        )}
+
+        {view === 'confirm' && (
+          <ConfirmView
+            email={email}
+            code={code} setCode={setCode}
+            loading={loading} error={error}
+            onSubmit={handleConfirm}
+          />
+        )}
+
+        {view === 'forgot' && (
+          <ForgotView
+            email={email} setEmail={setEmail}
+            loading={loading} error={error}
+            onSubmit={handleForgot}
+          />
+        )}
+
+        {view === 'reset' && (
+          <ResetView
+            email={email}
+            code={code} setCode={setCode}
+            newPassword={newPassword} setNewPassword={setNewPassword}
+            loading={loading} error={error}
+            onSubmit={handleReset}
+          />
+        )}
+
       </div>
 
       <Link
