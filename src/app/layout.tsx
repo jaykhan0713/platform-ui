@@ -2,7 +2,7 @@ import type { Metadata } from "next"
 import { Syne, DM_Sans } from "next/font/google"
 import React from "react"
 import "./globals.css"
-import { AmplifyProvider } from "@/components/auth/AmplifyProvider"
+import { AuthProvider } from "@/components/auth/AuthContext"
 
 const syne = Syne({
   variable: "--font-syne",
@@ -32,7 +32,7 @@ export default function RootLayout({
       <body className="min-h-screen antialiased">
         <div className="grid-bg" />
         <div className="accent-blob" />
-        <AmplifyProvider>{children}</AmplifyProvider>
+        <AuthProvider>{children}</AuthProvider>
       </body>
     </html>
   )

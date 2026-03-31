@@ -102,7 +102,7 @@ export default function Home() {
         <FeatureCard
           icon="📊"
           title="Load tests end-to-end"
-          description="K6 synthetic traffic load testing starting at Gateway w/ Auth. 200+ RPS. P99 < 30ms sustained traffic at edge. 65% of 0.5 vCPU utilization. 3 containers, 1 task per service."
+          description="K6 synthetic traffic load testing starting at Gateway w/ Auth. 200+ RPS. P99 < 30ms sustained traffic at edge. 65% of 0.5 vCPU utilization. 3 containers (app, adot, envoy), 1 task per service."
         />
       </div>
       <p className="text-[11px] font-medium tracking-[1.5px] uppercase text-[#E8E6E0]/30 mb-6">

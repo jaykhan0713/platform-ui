@@ -1,26 +1,13 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import Link from "next/link"
-import { fetchUserAttributes, getCurrentUser, signOut } from "aws-amplify/auth"
+import { useAuth } from "@/components/auth/AuthContext"
 
 export function Nav() {
   const [isOpen, setIsOpen] = useState(false)
-  const [userEmail, setUserEmail] = useState<string | null>(null)
-  const [authLoading, setAuthLoading] = useState(true)
 
-  useEffect(() => {
-    getCurrentUser()
-      .then(() => fetchUserAttributes())
-      .then((attrs) => setUserEmail(attrs.email ?? null))
-      .catch(() => setUserEmail(null))
-      .finally(() => setAuthLoading(false))
-  }, [])
-
-  const handleSignOut = async () => {
-    await signOut()
-    setUserEmail(null)
-  }
+  const { userEmail, authLoading, handleSignOut } = useAuth()
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 px-4 md:px-12 py-5 border-b border-white/[0.06] bg-[#0A0A0F]/80 backdrop-blur-[12px]">

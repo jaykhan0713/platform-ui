@@ -22,7 +22,12 @@ export function SignInView({
   onForgot,
 }: SignInViewProps) {
   return (
-    <>
+    <form
+      onSubmit={(e) => {
+        e.preventDefault()
+        onSubmit()
+      }}
+    >
       {error && <p className="text-[12px] text-red-400 mb-4">{error}</p>}
 
       <label className={labelClass}>Email</label>
@@ -59,6 +64,6 @@ export function SignInView({
       >
         {loading ? "Signing in..." : "Sign in →"}
       </button>
-    </>
+    </form>
   )
 }
