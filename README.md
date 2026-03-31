@@ -1,73 +1,40 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# platform-ui
 
-## Getting Started
+Frontend for the jay.platform portfolio project. Deployed at [jay-platform.com](https://jay-platform.com).
 
-First, run the development server:
+This repo serves to showcase frontend development, and and demonstrate the business plug-and-play of the end-to-end business use-case
+plug-and-play distributed systems.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Backend infrastructure and services live in separate repos:
+- [platform-aws-cdk](https://github.com/jaykhan0713/platform-aws-cdk) — CDK TypeScript, ECS Fargate, RDS, Cognito, Service Connect
+- [platform-service](https://github.com/jaykhan0713/platform-service) — Spring Boot 4 base template, Java 25, virtual threads, hexagonal architecture
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Stack
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- Next.js 16 / React 19
+- Tailwind CSS v4
+- TypeScript
+- AWS Amplify (auth)
+- Deployed to Vercel
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
-
-## Layering initial
-
+## Structure
 ```
 src/
-  app/                    → routing only, Next.js owns this
-    layout.tsx
-    page.tsx
-    dashboard/
-        page.tsx
-    callback/
-        page.tsx
-
+  app/          # App Router pages (landing, demo, login)
   components/
-    Nav.tsx               → shared across both
-    Footer.tsx            → shared across both
-    landing/              → landing page specific
-        StatCard.tsx
-        FeatureCard.tsx
-    gacha/                → gacha specific
-        PullButton.tsx
-        InventoryGrid.tsx
-
-  hooks/                  → reusable logic with React state, orchestrates lib/ calls
-    useAuth.ts
-    useGacha.ts
-
-  lib/
-    api.ts
-    auth.ts
-
-  types/                  → TypeScript interfaces
-    index.ts
-
-  config/                 → env vars, constants
-    env.ts
+    landing/    # Nav, FeatureCard, StatCard, SourceCard
+    auth/       # Auth-gated components
+  config/       # Environment and API config
 ```
+
+## Running locally
+```bash
+npm install
+npm run dev
+```
+
+Open [http://localhost:3000](http://localhost:3000).
+
+## Auth
+
+The `/demo` route is protected via Cognito OIDC. The landing page is fully public. Auth is handled through AWS Amplify's `signIn()` — no hosted UI redirect.
