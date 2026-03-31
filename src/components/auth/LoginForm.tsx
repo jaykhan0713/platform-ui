@@ -7,7 +7,13 @@ import { RegisterView } from "@/components/auth/views/RegisterView"
 import { ConfirmView } from "@/components/auth/views/ConfirmView"
 import { ForgotView } from "@/components/auth/views/ForgotView"
 import { ResetView } from "@/components/auth/views/ResetView"
-import { confirmSignUp, signIn, signUp } from "aws-amplify/auth"
+import {
+  confirmResetPassword,
+  confirmSignUp,
+  resetPassword,
+  signIn,
+  signUp,
+} from "aws-amplify/auth"
 import { useRouter } from "next/navigation"
 
 type View = "signin" | "register" | "confirm" | "forgot" | "reset"
@@ -82,8 +88,37 @@ export function LoginForm() {
     }
   }
 
-  const handleForgot = () => {}
-  const handleReset = () => {}
+  const handleForgot = async () => {
+    setError("")
+    setLoading(true)
+    try {
+      await resetPassword({ username: email })
+      setView("reset")
+    } catch (e: unknown) {
+      setError(e instanceof Error ? e.message : "Failed to send reset code")
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  const handleReset = async () => {
+    setError("")
+    setLoading(true)
+    try {
+      await confirmResetPassword({
+        username: email,
+        confirmationCode: code,
+        newPassword,
+      })
+      setCode("")
+      setNewPassword("")
+      setView("signin")
+    } catch (e: unknown) {
+      setError(e instanceof Error ? e.message : "Failed to reset password")
+    } finally {
+      setLoading(false)
+    }
+  }
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center px-6 py-12">

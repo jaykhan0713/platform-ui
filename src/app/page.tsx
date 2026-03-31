@@ -97,7 +97,7 @@ export default function Home() {
         <FeatureCard
           icon="✦"
           title="Full-stack"
-          description="NextJS deployed on vercel. Login using cognito SRP + OAuth2. Demonstrates Plug-and-play business usecase."
+          description="NextJS deployed on vercel. Login using AWS Amplify -> cognito SRP + OAuth2. Demonstrates Plug-and-play business usecase."
         />
         <FeatureCard
           icon="📊"
@@ -139,7 +139,7 @@ export default function Home() {
           Built by <span className="text-[#7F77DD]/80">Jay Khan</span>
         </span>
         <span className="text-[12px] text-[#E8E6E0]/20">
-          Powered by{" "}
+          Built with{" "}
           <a
             href="https://nextjs.org"
             target="_blank"
