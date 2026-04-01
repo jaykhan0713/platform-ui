@@ -2,7 +2,7 @@
 
 import { createContext, useContext, useEffect, useState } from "react"
 import { Amplify } from "aws-amplify"
-import { getCurrentUser, fetchUserAttributes, signOut } from "aws-amplify/auth"
+import { getCurrentUser, signOut } from "aws-amplify/auth"
 import { usePathname } from "next/navigation"
 import { awsConfig } from "@/config/env"
 
@@ -29,11 +29,10 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     const checkAuth = async () => {
       setAuthLoading(true)
       try {
-        await getCurrentUser()
-        const attrs = await fetchUserAttributes()
-        setUserEmail(attrs.email ?? null)
+        const userName = await getCurrentUser().then((authUser) => authUser.signInDetails?.loginId) //throws if no session
+        setUserEmail(userName ?? null)
       } catch {
-        setUserEmail(null)
+        setUserEmail(null) //not authenticated, clear email
       } finally {
         setAuthLoading(false)
       }
