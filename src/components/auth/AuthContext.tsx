@@ -6,35 +6,31 @@ import { getCurrentUser, signOut } from "aws-amplify/auth"
 import { usePathname } from "next/navigation"
 import { awsConfig } from "@/config/env"
 
-Amplify.configure(awsConfig)
+//ssr moves access/id/refresh tokens from local storage to cookies so server and client can both use.
+Amplify.configure(awsConfig, { ssr: true })
 
 interface AuthState {
   userEmail: string | null
-  authLoading: boolean
   handleSignOut: () => Promise<void>
 }
 
 const AuthContext = createContext<AuthState>({
   userEmail: null,
-  authLoading: true,
   handleSignOut: async () => {},
 })
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [userEmail, setUserEmail] = useState<string | null>(null)
-  const [authLoading, setAuthLoading] = useState(true)
   const pathname = usePathname()
 
   useEffect(() => {
     const checkAuth = async () => {
-      setAuthLoading(true)
       try {
-        const userName = await getCurrentUser().then((authUser) => authUser.signInDetails?.loginId) //throws if no session
+        //throws if no session
+        const userName = await getCurrentUser().then((authUser) => authUser.signInDetails?.loginId)
         setUserEmail(userName ?? null)
       } catch {
         setUserEmail(null) //not authenticated, clear email
-      } finally {
-        setAuthLoading(false)
       }
     }
     checkAuth()
@@ -46,9 +42,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   }
 
   return (
-    <AuthContext.Provider value={{ userEmail, authLoading, handleSignOut }}>
-      {children}
-    </AuthContext.Provider>
+    <AuthContext.Provider value={{ userEmail, handleSignOut }}>{children}</AuthContext.Provider>
   )
 }
 

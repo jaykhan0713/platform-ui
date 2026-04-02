@@ -7,7 +7,7 @@ import { useAuth } from "@/components/auth/AuthContext"
 export function Nav() {
   const [isOpen, setIsOpen] = useState(false)
 
-  const { userEmail, authLoading, handleSignOut } = useAuth()
+  const { userEmail, handleSignOut } = useAuth()
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 px-4 md:px-12 py-5 border-b border-white/[0.06] bg-[#0A0A0F]/80 backdrop-blur-[12px]">
@@ -24,11 +24,7 @@ export function Nav() {
             Try the demo →
           </Link>
 
-          {authLoading ? (
-            <div className="w-[60px] flex items-center justify-center py-2">
-              <div className="w-4 h-4 rounded-full border-2 border-[#E8E6E0]/20 border-t-[#7F77DD] animate-spin" />
-            </div>
-          ) : userEmail ? (
+          {userEmail ? (
             <div className="flex items-center gap-3">
               <span className="text-[13px] text-[#E8E6E0]/45">{userEmail}</span>
               <button
