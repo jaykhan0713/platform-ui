@@ -18,7 +18,7 @@ export function Nav() {
 
         <div className="hidden md:flex items-center gap-3">
           <Link
-            href="/demo"
+            href={userEmail ? "/demo" : "/login?reason=auth_required"}
             className="text-[13px] font-medium text-[#0A0A0F] bg-[#E8E6E0] px-5 py-2 rounded-md hover:bg-white transition-colors"
           >
             Try the demo →
@@ -59,7 +59,7 @@ export function Nav() {
       {isOpen && (
         <div className="md:hidden flex flex-col gap-3 pt-4 pb-2 border-t border-white/[0.06] mt-4">
           <Link
-            href="/demo"
+            href={userEmail ? "/demo" : "/login?reason=auth_required"}
             className="text-[14px] font-medium text-[#0A0A0F] bg-[#E8E6E0] px-5 py-3 rounded-md text-center hover:bg-white transition-colors"
           >
             Try the demo →

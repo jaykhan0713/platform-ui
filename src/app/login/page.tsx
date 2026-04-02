@@ -1,11 +1,16 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import { use, useEffect, useState } from "react"
 import { useRouter } from "next/navigation"
 import { getCurrentUser } from "aws-amplify/auth"
 import { LoginForm } from "@/components/auth/LoginForm"
 
-export default function LoginPage() {
+export default function LoginPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ reason?: string }>
+}) {
+  const params = use(searchParams)
   const router = useRouter()
   const [checking, setChecking] = useState(true)
 
@@ -17,5 +22,5 @@ export default function LoginPage() {
 
   if (checking) return null
 
-  return <LoginForm />
+  return <LoginForm params={params} />
 }

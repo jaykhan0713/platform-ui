@@ -24,7 +24,8 @@ const viewTitle: Partial<Record<View, string>> = {
   reset: "New password",
 }
 
-export function LoginForm() {
+export function LoginForm({ params }: { params?: { reason?: string } }) {
+  const [reason, setReason] = useState<string | null>(params?.reason ?? null)
   const [view, setView] = useState<View>("signin")
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
@@ -33,29 +34,34 @@ export function LoginForm() {
   const [newPassword, setNewPassword] = useState("")
   const [error, setError] = useState("")
   const [loading, setLoading] = useState(false)
-
   const showTabs = view === "signin" || view === "register"
+
+  const setErrorClear = (msg: string) => {
+    setError(msg)
+    setReason(null)
+    router.replace("/login", { scroll: false })
+  }
 
   const router = useRouter()
 
   // handlers — wired to Amplify
   const handleSignIn = async () => {
-    setError("")
+    setErrorClear("")
     setLoading(true)
     try {
       await signIn({ username: email, password })
       router.push("/")
-    } catch (e: unknown) {
-      setError(e instanceof Error ? e.message : "Sign in failed")
+    } catch {
+      setErrorClear("Sign in failed")
     } finally {
       setLoading(false)
     }
   }
 
   const handleRegister = async () => {
-    setError("")
+    setErrorClear("")
     if (password !== confirmPassword) {
-      setError("Passwords do not match")
+      setErrorClear("Passwords do not match")
       return
     }
     setLoading(true)
@@ -69,40 +75,40 @@ export function LoginForm() {
       })
       setView("confirm")
     } catch (e: unknown) {
-      setError(e instanceof Error ? e.message : "Registration failed")
+      setErrorClear(e instanceof Error ? e.message : "Registration failed")
     } finally {
       setLoading(false)
     }
   }
 
   const handleConfirm = async () => {
-    setError("")
+    setErrorClear("")
     setLoading(true)
     try {
       await confirmSignUp({ username: email, confirmationCode: code })
       setView("signin")
     } catch (e: unknown) {
-      setError(e instanceof Error ? e.message : "Verification failed")
+      setErrorClear(e instanceof Error ? e.message : "Verification failed")
     } finally {
       setLoading(false)
     }
   }
 
   const handleForgot = async () => {
-    setError("")
+    setErrorClear("")
     setLoading(true)
     try {
       await resetPassword({ username: email })
       setView("reset")
     } catch (e: unknown) {
-      setError(e instanceof Error ? e.message : "Failed to send reset code")
+      setErrorClear(e instanceof Error ? e.message : "Failed to send reset code")
     } finally {
       setLoading(false)
     }
   }
 
   const handleReset = async () => {
-    setError("")
+    setErrorClear("")
     setLoading(true)
     try {
       await confirmResetPassword({
@@ -114,7 +120,7 @@ export function LoginForm() {
       setNewPassword("")
       setView("signin")
     } catch (e: unknown) {
-      setError(e instanceof Error ? e.message : "Failed to reset password")
+      setErrorClear(e instanceof Error ? e.message : "Failed to reset password")
     } finally {
       setLoading(false)
     }
@@ -134,7 +140,7 @@ export function LoginForm() {
                 key={v}
                 onClick={() => {
                   setView(v)
-                  setError("")
+                  setErrorClear("")
                 }}
                 className={`flex-1 py-[10px] text-[13px] font-medium transition-all border-none cursor-pointer ${
                   view === v ? "bg-[#7F77DD]/15 text-[#AFA9EC]" : "bg-transparent text-[#E8E6E0]/35"
@@ -149,7 +155,7 @@ export function LoginForm() {
             <button
               onClick={() => {
                 setView("signin")
-                setError("")
+                setErrorClear("")
               }}
               className="text-[12px] text-[#E8E6E0]/30 hover:text-[#E8E6E0]/50 transition-colors bg-transparent border-none cursor-pointer p-0 mb-4 block"
             >
@@ -168,11 +174,11 @@ export function LoginForm() {
             password={password}
             setPassword={setPassword}
             loading={loading}
-            error={error}
+            error={error !== "" ? error : reason === "auth_required" ? "Must be signed in." : error}
             onSubmit={handleSignIn}
             onForgot={() => {
               setView("forgot")
-              setError("")
+              setErrorClear("")
             }}
           />
         )}

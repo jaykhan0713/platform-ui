@@ -10,14 +10,7 @@ export default function DemoPage() {
         The demo is almost ready.
       </h1>
       <p className="text-sm text-[#E8E6E0]/50 max-w-sm mb-8">
-        The gacha demo is under active development. Check back soon. For now, test out the{" "}
-        <Link
-          href="/login"
-          className="text-[14px] text-purple-400 hover:text-[#E8E6E0] transition-colors text-center py-2"
-        >
-          AWS-Amplify Cognito+Oauth2
-        </Link>{" "}
-        secured login
+        The gacha demo is under active development. Check back soon.
       </p>
       <Link
         href="/"
