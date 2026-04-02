@@ -1,6 +1,6 @@
 "use client"
 
-import { createContext, useContext, useEffect, useState } from "react"
+import { createContext, useContext, useEffect, useRef, useState } from "react"
 import { Amplify } from "aws-amplify"
 import { getCurrentUser, signOut } from "aws-amplify/auth"
 import { usePathname } from "next/navigation"
@@ -24,7 +24,7 @@ const AuthContext = createContext<AuthState>({
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [userEmail, setUserEmail] = useState<string | null>(null)
   const [isAuthReady, setIsAuthReady] = useState<boolean>(false)
-
+  const channelRef = useRef<BroadcastChannel | null>(null)
   const pathname = usePathname()
 
   useEffect(() => {
@@ -42,9 +42,21 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     checkAuth()
   }, [pathname])
 
+  useEffect(() => {
+    channelRef.current = new BroadcastChannel("auth")
+    channelRef.current.onmessage = (e) => {
+      if (e.data.type === "signOut") {
+        setUserEmail(null)
+      }
+    }
+
+    return () => channelRef.current?.close()
+  }, [])
+
   const handleSignOut = async () => {
     await signOut()
     setUserEmail(null)
+    channelRef.current?.postMessage({ type: "signOut" })
   }
 
   return (
