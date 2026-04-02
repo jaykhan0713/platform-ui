@@ -7,7 +7,7 @@ import { useAuth } from "@/components/auth/AuthContext"
 export function Nav() {
   const [isOpen, setIsOpen] = useState(false)
 
-  const { userEmail, handleSignOut } = useAuth()
+  const { userEmail, isAuthReady, handleSignOut } = useAuth()
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 px-4 md:px-12 py-5 border-b border-white/[0.06] bg-[#0A0A0F]/80 backdrop-blur-[12px]">
@@ -24,23 +24,27 @@ export function Nav() {
             Try the demo →
           </Link>
 
-          {userEmail ? (
-            <div className="flex items-center gap-3">
-              <span className="text-[13px] text-[#E8E6E0]/45">{userEmail}</span>
-              <button
-                onClick={handleSignOut}
-                className="text-[13px] font-medium text-[#E8E6E0]/60 hover:text-[#E8E6E0] transition-colors px-3 py-2 bg-transparent border-none cursor-pointer"
+          {isAuthReady ? (
+            userEmail ? (
+              <div className="flex items-center gap-3">
+                <span className="text-[13px] text-[#E8E6E0]/45">{userEmail}</span>
+                <button
+                  onClick={handleSignOut}
+                  className="text-[13px] font-medium text-[#E8E6E0]/60 hover:text-[#E8E6E0] transition-colors px-3 py-2 bg-transparent border-none cursor-pointer"
+                >
+                  Sign out
+                </button>
+              </div>
+            ) : (
+              <Link
+                href="/login"
+                className="text-[13px] font-medium text-[#E8E6E0]/60 hover:text-[#E8E6E0] transition-colors px-3 py-2"
               >
-                Sign out
-              </button>
-            </div>
+                Log in
+              </Link>
+            )
           ) : (
-            <Link
-              href="/login"
-              className="text-[13px] font-medium text-[#E8E6E0]/60 hover:text-[#E8E6E0] transition-colors px-3 py-2"
-            >
-              Log in
-            </Link>
+            <div className="h-4 w-44 rounded-full bg-white/10 animate-pulse" />
           )}
         </div>
 
