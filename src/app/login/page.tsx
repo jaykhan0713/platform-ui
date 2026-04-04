@@ -1,26 +1,21 @@
 "use client"
 
-import { use, useEffect, useState } from "react"
-import { useRouter } from "next/navigation"
-import { getCurrentUser } from "aws-amplify/auth"
-import { LoginForm } from "@/components/auth/LoginForm"
+import { useEffect } from "react"
+import { signInWithRedirect, signOut } from "aws-amplify/auth"
+import { useSearchParams } from "next/navigation"
 
-export default function LoginPage({
-  searchParams,
-}: {
-  searchParams: Promise<{ reason?: string }>
-}) {
-  const params = use(searchParams)
-  const router = useRouter()
-  const [checking, setChecking] = useState(true)
+export default function LoginPage() {
+  const searchParams = useSearchParams()
+  const error = searchParams.get("error")
 
   useEffect(() => {
-    getCurrentUser()
-      .then(() => router.push("/"))
-      .catch(() => setChecking(false))
-  }, [])
+    if (error) return // stop the loop if Cognito returned an error
+    signOut({ global: false })
+      .catch(() => {})
+      .finally(() => signInWithRedirect())
+  }, [error])
 
-  if (checking) return null
+  if (error) return <p style={{ color: "red" }}>Auth error: {error}</p>
 
-  return <LoginForm params={params} />
+  return null
 }
