@@ -12,7 +12,7 @@ export const { runWithAmplifyServerContext, createAuthRouteHandlers } = createSe
         scopes: ["openid", "email"],
         redirect_sign_in_uri: [process.env.NEXT_PUBLIC_REDIRECT_SIGN_IN!],
         redirect_sign_out_uri: [process.env.NEXT_PUBLIC_REDIRECT_SIGN_OUT!],
-        response_type: "code",
+        response_type: "code", //need for PKCE
         identity_providers: ["COGNITO"],
       },
     },
