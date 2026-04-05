@@ -97,7 +97,7 @@ export default function Home() {
         <FeatureCard
           icon="✦"
           title="Full-stack"
-          description="NextJS deployed on vercel. Login using AWS Amplify -> cognito SRP + OAuth2. Demonstrates Plug-and-play business usecase."
+          description="NextJS deployed on vercel. Login using AWS Amplify. Cgnito + OAuth2 OIDC + secure HttpOnly tokens. Demonstrates Plug-and-play business usecase."
         />
         <FeatureCard
           icon="📊"

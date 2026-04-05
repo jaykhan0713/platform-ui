@@ -19,7 +19,7 @@ export async function proxy(request: NextRequest) {
 
   if (authenticated) return response
 
-  return NextResponse.redirect(new URL("/login", request.url))
+  return NextResponse.redirect(new URL("/api/auth/sign-in", request.url))
 }
 
 export const config = {

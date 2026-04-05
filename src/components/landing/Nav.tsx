@@ -62,7 +62,7 @@ export function Nav() {
               </>
             ) : (
               <Link
-                href="/login"
+                href="/api/auth/sign-in"
                 className="text-[13px] text-[#E8E6E0]/60 hover:text-[#E8E6E0] transition-colors px-3 py-2 no-underline"
               >
                 Log in
@@ -72,7 +72,7 @@ export function Nav() {
             <div className="h-4 w-24 rounded-full bg-white/10 animate-pulse" />
           )}
           <Link
-            href={userEmail ? "/demo" : "/login"}
+            href="/demo"
             className="text-[13px] font-medium text-[#E8E6E0] border border-white/20 px-5 py-2 rounded-md hover:border-[#7F77DD] hover:bg-[#7F77DD]/10 transition-all no-underline"
           >
             Try the demo →
@@ -113,7 +113,7 @@ export function Nav() {
             Microservices
           </a>
           <Link
-            href={userEmail ? "/demo" : "/login"}
+            href="/demo"
             className="text-[14px] font-medium text-[#E8E6E0] border border-white/20 px-5 py-3 rounded-md text-center hover:border-[#7F77DD] hover:bg-[#7F77DD]/10 transition-all no-underline mt-1"
           >
             Try the demo →
@@ -130,7 +130,7 @@ export function Nav() {
             </>
           ) : (
             <Link
-              href="/login"
+              href="/api/auth/sign-in"
               className="text-[14px] text-[#E8E6E0]/60 hover:text-[#E8E6E0] transition-colors text-center py-2 no-underline"
             >
               Log in
