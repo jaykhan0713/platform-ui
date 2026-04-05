@@ -9,7 +9,7 @@ export const awsConfig: ResourcesConfig = {
         email: true,
         oauth: {
           domain: process.env.NEXT_PUBLIC_COGNITO_DOMAIN!,
-          scopes: ["openid", "email", "profile"],
+          scopes: ["openid", "email"],
           redirectSignIn: [process.env.NEXT_PUBLIC_REDIRECT_SIGN_IN!],
           redirectSignOut: [process.env.NEXT_PUBLIC_REDIRECT_SIGN_OUT!],
           responseType: "code",

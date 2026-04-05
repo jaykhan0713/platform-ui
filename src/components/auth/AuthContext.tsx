@@ -43,16 +43,14 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     channelRef.current = new BroadcastChannel("auth")
     channelRef.current.onmessage = (e) => {
-      if (e.data.type === "signOut") {
-        setUserEmail(null)
-      }
+      if (e.data.type === "signOut") setUserEmail(null)
     }
     return () => channelRef.current?.close()
   }, [])
 
   const handleSignOut = () => {
     channelRef.current?.postMessage({ type: "signOut" })
-    window.location.href = "/api/auth/logout"
+    window.location.href = "/api/auth/sign-out"
   }
 
   return (
