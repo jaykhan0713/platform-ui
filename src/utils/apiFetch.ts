@@ -1,4 +1,4 @@
-//For client compoents,
+//For client components,
 //used to redirect to sign-in if user tries to access something and their token is expired.
 export async function apiFetch(url: string, options?: RequestInit): Promise<Response> {
   const res = await fetch(url, options)
