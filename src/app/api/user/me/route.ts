@@ -3,7 +3,7 @@ import { NextRequest, NextResponse } from "next/server"
 import { runWithAmplifyServerContext } from "@/utils/amplifyServerUtils"
 
 export async function GET(request: NextRequest) {
-  const response = new NextResponse() // not NextResponse.next()
+  const response = new NextResponse()
 
   try {
     const email = await runWithAmplifyServerContext({
