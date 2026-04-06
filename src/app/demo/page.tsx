@@ -4,13 +4,13 @@ export default function DemoPage() {
   return (
     <main className="flex flex-col items-center justify-center min-h-screen text-center px-6">
       <p className="text-xs font-medium tracking-widest uppercase text-purple-400 mb-4">
-        Coming Soon
+        Currently Unavailable
       </p>
       <h1 className="font-syne text-4xl font-extrabold tracking-tight text-[#E8E6E0] mb-4">
-        The demo is almost ready.
+        AWS services are currently asleep to save costs.
       </h1>
       <p className="text-sm text-[#E8E6E0]/50 max-w-sm mb-8">
-        The gacha demo is under active development. Check back soon.
+        Email me at jaykhan0713@gmail.com if you&#39;d like a walk through of the demo!
       </p>
       <Link
         href="/"
