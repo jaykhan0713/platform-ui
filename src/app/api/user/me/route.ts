@@ -1,22 +1,33 @@
-import { cookies } from "next/headers"
-import { NextResponse } from "next/server"
+import { fetchAuthSession } from "aws-amplify/auth/server"
+import { NextRequest, NextResponse } from "next/server"
+import { runWithAmplifyServerContext } from "@/utils/amplifyServerUtils"
 
-export async function GET() {
+export async function GET(request: NextRequest) {
+  const response = new NextResponse() // not NextResponse.next()
+
   try {
-    const cookieStore = await cookies()
-    const allCookies = cookieStore.getAll()
-    const idTokenCookie = allCookies.find((c) => c.name.endsWith(".idToken"))
+    const email = await runWithAmplifyServerContext({
+      nextServerContext: { request, response },
+      operation: async (contextSpec) => {
+        const session = await fetchAuthSession(contextSpec)
+        const idToken = session.tokens?.idToken
+        if (!idToken) return null
+        return (idToken.payload["email"] as string) ?? null
+      },
+    })
 
-    if (!idTokenCookie) {
-      return NextResponse.json({ error: "Unauthenticated" }, { status: 401 })
+    if (!email) {
+      return NextResponse.json(
+        { error: "Unauthenticated" },
+        { status: 401, headers: response.headers },
+      )
     }
 
-    const payload = JSON.parse(
-      Buffer.from(idTokenCookie.value.split(".")[1], "base64url").toString(),
-    )
-
-    return NextResponse.json({ email: payload.email ?? null })
+    return NextResponse.json({ email }, { headers: response.headers })
   } catch {
-    return NextResponse.json({ error: "Unauthenticated" }, { status: 401 })
+    return NextResponse.json(
+      { error: "Unauthenticated" },
+      { status: 401, headers: response.headers },
+    )
   }
 }

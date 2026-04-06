@@ -4,6 +4,11 @@ import { runWithAmplifyServerContext } from "@/utils/amplifyServerUtils"
 import { AmplifyServer } from "aws-amplify/adapter-core"
 
 export async function proxy(request: NextRequest) {
+  // Early return for RSC prefetch requests — don't redirect these
+  if (request.headers.get("RSC") === "1") {
+    return NextResponse.next()
+  }
+
   const response = NextResponse.next()
 
   const authenticated = await runWithAmplifyServerContext({
