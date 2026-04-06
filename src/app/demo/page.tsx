@@ -23,8 +23,10 @@ export default function DemoPage() {
         AWS API is in sleep mode.
       </h1>
       <p className="text-sm text-[#E8E6E0]/50 max-w-sm mb-8">
-        To save costs of an entire AWS distributed systems running, I have a portable sleep mode
-        enabled. Email me at jaykhan0713@gmail.com if you&#39;d like a walk through of the demo!
+        To save enormous costs of an entire AWS distributed systems (ALB, ECS tasks for
+        microservices, RDS, VPC endpoints, etc) running, I have a portable sleep mode enabled. Email
+        me at <a className="text-purple-400">jaykhan0713@gmail.com </a> if you&#39;d like a walk
+        through of the demo!
       </p>
       <Link
         href="/"
