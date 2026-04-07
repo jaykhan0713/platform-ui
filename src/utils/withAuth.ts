@@ -31,24 +31,11 @@ export function withAuth(handler: AuthenticatedHandler) {
       }
 
       return await handler(request, response, accessToken)
-    } catch {
+    } catch (e: unknown) {
       return NextResponse.json(
-        { error: "Unauthenticated" },
-        { status: 401, headers: response.headers },
+        { error: (e as Error).message },
+        { status: 500, headers: response.headers },
       )
     }
   }
 }
-
-// // src/app/api/<api call paths>/route.ts
-// import { withAuth } from "@/utils/withAuth"
-// import { NextRequest, NextResponse } from "next/server"
-//
-// export const GET = withAuth(async (request, response, accessToken) => {
-//   // accessToken is guaranteed fresh here
-//   const backendRes = await fetch(`${process.env.BACKEND_URL}/...`, {
-//     headers: { Authorization: `Bearer ${accessToken}` }
-//   })
-//   const data = await backendRes.json()
-//   return NextResponse.json(data, { headers: response.headers })
-// })
