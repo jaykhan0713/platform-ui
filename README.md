@@ -37,4 +37,4 @@ Open [http://localhost:3000](http://localhost:3000).
 
 ## Auth
 
-The `/demo` route is protected via Cognito OIDC. The landing page is fully public. Auth is handled through AWS Amplify's `signIn()` — no hosted UI redirect.
+The `/demo` route is protected via Cognito. The landing page is fully public. BFF routes pattern with secure HttpOnly cookies implemented for Authorized api requests. 
