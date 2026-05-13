@@ -62,7 +62,7 @@ export default function Home() {
         <FeatureCard
           icon="🏗"
           title="AWS CDK Typescript"
-          description="Portable, standardized, seamless IaC. API GW -> VPC Link -> VPC. ELB -> CICD."
+          description="Portable, standardized, seamless IaC. Bring the entire platform down and up within minutes. CICD workflows fully automated."
         />
         <FeatureCard
           icon="⚡"
